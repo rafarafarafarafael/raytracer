@@ -1,5 +1,11 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <sstream>
+#define STB_IMAGE_IMPLEMENTATION
+#include "../stb/stb_image.h"
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "../stb/stb_image_write.h"
 
 int main(){
     int nx = 200;
@@ -7,6 +13,7 @@ int main(){
     std::ofstream out_file;
     out_file.open("test_image.ppm");
     out_file << "P3\n" << nx << " " << ny << "\n255\n";
+    //std::stringstream data;
     for(int j = ny - 1; j >= 0; j--){
         for(int i = 0; i < nx; i++){
             float r = float(i) / nx;
@@ -19,5 +26,9 @@ int main(){
         }
     } 
     out_file.close();
+    //unsigned char *datastr;
+    //data >> datastr;
+    //std::cout << data.str();
+    //stbi_write_png("test.png", nx, ny, 3, &data, 0);
     return 0;
 }
