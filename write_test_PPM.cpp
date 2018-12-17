@@ -2,8 +2,6 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#define STB_IMAGE_IMPLEMENTATION
-#include "../stb/stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "../stb/stb_image_write.h"
 
@@ -13,7 +11,7 @@ int main(){
     std::ofstream out_file;
     out_file.open("test_image.ppm");
     out_file << "P3\n" << nx << " " << ny << "\n255\n";
-    //std::stringstream data;
+    std::stringstream data;
     for(int j = ny - 1; j >= 0; j--){
         for(int i = 0; i < nx; i++){
             float r = float(i) / nx;
@@ -23,12 +21,17 @@ int main(){
             int ig = int(255.99 * g);
             int ib = int(255.99 * b);
             out_file << ir << " " << ig << " " << ib << "\n";
+            data << ir << " " << ig << " " << ib << "\n";
         }
     } 
     out_file.close();
-    //unsigned char *datastr;
+    unsigned char* datastr = NULL;
+    datastr = (unsigned char*)malloc(nx*ny*3);
+
     //data >> datastr;
     //std::cout << data.str();
-    //stbi_write_png("test.png", nx, ny, 3, &data, 0);
+    std::string tmp = data.str();
+    datastr = tmp.c_str();
+    stbi_write_png("test.png", nx, ny, 3, datastr, 0);
     return 0;
 }
