@@ -20,18 +20,18 @@ int main(){
             int ir = int(255.99 * r);
             int ig = int(255.99 * g);
             int ib = int(255.99 * b);
-            out_file << ir << " " << ig << " " << ib << "\n";
-            data << ir << " " << ig << " " << ib << "\n";
+            out_file << ir << " " << ig << " " << ib << std::endl;
+            data << ir << " " << ig << " " << ib << std::endl;
         }
     } 
     out_file.close();
-    unsigned char* datastr = NULL;
-    datastr = (unsigned char*)malloc(nx*ny*3);
+    //unsigned char* datastr = NULL;
+    //datastr = (unsigned char*)malloc(nx*ny*3);
 
     //data >> datastr;
     //std::cout << data.str();
     std::string tmp = data.str();
-    datastr = tmp.c_str();
-    stbi_write_png("test.png", nx, ny, 3, datastr, 0);
+    //datastr = tmp.c_str();
+    stbi_write_png("test.png", nx, ny, 3, tmp.c_str(), 0);
     return 0;
 }
