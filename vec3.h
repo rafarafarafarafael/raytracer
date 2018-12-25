@@ -35,3 +35,7 @@ public:
 
     float e[3];
 };
+
+inline std::istream& operator>>(std::istream &is, vec3 &t){
+    is
+}
