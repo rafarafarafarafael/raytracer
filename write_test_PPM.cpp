@@ -4,6 +4,7 @@
 #include <sstream>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "../stb/stb_image_write.h"
+#include "vec3.h"
 
 int main(){
     const int nx = 200;
@@ -17,12 +18,11 @@ int main(){
 
     for(int j = ny - 1; j >= 0; j--){
         for(int i = 0; i < nx; i++){
-            float r = float(i) / nx;
-            float g = float(j) / ny;
-            float b = 0.2;
-            int ir = int(255.99 * r);
-            int ig = int(255.99 * g);
-            int ib = int(255.99 * b);
+            vec3 rgb = vec3(i, j, 0.2);
+            rgb /= vec3(float(nx), float(ny), float(1));
+            int ir = int(255.99 * rgb[0]);
+            int ig = int(255.99 * rgb[1]);
+            int ib = int(255.99 * rgb[2]);
 
             data[index++] = (unsigned char)(ir);
             data[index++] = (unsigned char)(ig);
