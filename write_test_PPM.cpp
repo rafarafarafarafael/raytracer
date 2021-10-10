@@ -20,9 +20,9 @@ int main(){
         for(int i = 0; i < nx; i++){
             vec3 rgb = vec3(i, j, 0.2);
             rgb /= vec3(float(nx), float(ny), float(1));
-            int ir = int(255.99 * rgb[0]);
-            int ig = int(255.99 * rgb[1]);
-            int ib = int(255.99 * rgb[2]);
+            int ir = int(255.99 * rgb.r());
+            int ig = int(255.99 * rgb.g());
+            int ib = int(255.99 * rgb.b());
 
             data[index++] = (unsigned char)(ir);
             data[index++] = (unsigned char)(ig);
